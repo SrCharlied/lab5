@@ -5,7 +5,8 @@ use minifb::{Key, KeyRepeat, Window, WindowOptions};
 use std::path::PathBuf;
 
 const HELP: &str = "Lab 5 — cuerpos celestes por software\n\
-Uso: cargo run --release -- [--neutron | --neutron-live | --rocky | --eyeball | --pulsar | --gas | --gas-v2] [--time S] [--layers 1..4] [--headless] [--output ruta.png] [--width N] [--height N] [--angle RAD] [--frames N]\n\
+Uso: cargo run --release -- [--pulsar | --neutron | --neutron-live | --diagnostic | --rocky | --eyeball | --gas | --gas-v2 | --volcanic | --desert | --temperate] [--moon] [--time S] [--layers 1..4] [--headless] [--output ruta.png] [--width N] [--height N] [--angle RAD] [--frames N]\n\
+Sin modo explicito: pulsar principal. --neutron conserva la estrella base; --diagnostic muestra normales.\n\
 Ventana: Esc salir; P guardar PNG.\n\
 --frames N cierra la ventana despues de N cuadros (N > 0).\n\
 --angle fija la rotacion Y inicial en radianes; --neutron es estatico, --neutron-live gira.\n\
@@ -13,6 +14,8 @@ Ventana: Esc salir; P guardar PNG.\n\
 --eyeball selecciona el mundo de hielo con oceano-ojo; --rocky conserva la candidata cobriza.\n\
 --gas selecciona la candidata estatica del gigante azul HD 189733 b; --layers muestra sus cuatro capas.\n\
 --gas-v2 selecciona la variante turbulenta estatica; --gas conserva las bandas V1.\n\
+--volcanic, --desert y --temperate son planetas extra artisticos, estaticos y procedurales.\n\
+--desert --moon agrega una luna pequena como modelo separado; no hay orbita animada.\n\
 --neutron-live activa giro, pulsacion y camara; --time S fija su tiempo inicial.\n\
 --pulsar es una exhibicion separada: superficie, arcos, haces y corona; --time fija su tiempo y --layers sus etapas acumulativas.\n\
 LIVE: Flechas orbitar; W/S acercar/alejar; Espacio pausa; R reinicia; P PNG; Esc salir.\n";
@@ -30,8 +33,11 @@ fn run() -> Result<(), String> {
     let mut rocky = false;
     let mut eyeball = false;
     let mut pulsar = false;
+    let mut diagnostic = false;
     let mut gas = false;
     let mut gas_v2 = false;
+    let mut extra = None;
+    let mut moon = false;
     let mut layers = 4_u8;
     let mut explicit_layers = false;
     let mut explicit_output = false;
@@ -63,12 +69,31 @@ fn run() -> Result<(), String> {
             eyeball = true;
             continue;
         }
+        if arg == "--diagnostic" {
+            diagnostic = true;
+            continue;
+        }
         if arg == "--pulsar" {
             pulsar = true;
             continue;
         }
         if arg == "--gas" {
             gas = true;
+            continue;
+        }
+        if arg == "--moon" {
+            moon = true;
+            continue;
+        }
+        if ["--volcanic", "--desert", "--temperate"].contains(&arg.as_str()) {
+            if extra.is_some() {
+                return Err("Escoge un solo planeta extra".into());
+            }
+            extra = Some(match arg.as_str() {
+                "--volcanic" => lab5::extras::Body::Volcanic,
+                "--desert" => lab5::extras::Body::Desert,
+                _ => lab5::extras::Body::Temperate,
+            });
             continue;
         }
         if arg == "--gas-v2" {
@@ -116,24 +141,41 @@ fn run() -> Result<(), String> {
             _ => unreachable!(),
         }
     }
-    if u8::from(live)
+    let selected_modes = u8::from(live)
         + u8::from(neutron)
         + u8::from(rocky)
         + u8::from(eyeball)
         + u8::from(pulsar)
         + u8::from(gas)
         + u8::from(gas_v2)
-        > 1
-    {
+        + u8::from(extra.is_some())
+        + u8::from(diagnostic);
+    if selected_modes > 1 {
         return Err(
-            "Escoge un solo modo: --neutron, --neutron-live, --rocky, --eyeball, --pulsar, --gas o --gas-v2"
+            "Escoge un solo modo: --pulsar, --neutron, --neutron-live, --diagnostic, --rocky, --eyeball, --gas, --gas-v2, --volcanic, --desert o --temperate"
                 .into(),
         );
+    }
+    let default_pulsar = selected_modes == 0;
+    if default_pulsar {
+        pulsar = true;
+    }
+    if moon && extra != Some(lab5::extras::Body::Desert) {
+        return Err("--moon requiere --desert".into());
     }
     if explicit_time && !live && !pulsar {
         return Err("--time requiere --neutron-live".into());
     }
-    if explicit_layers && !neutron && !live && !rocky && !eyeball && !pulsar && !gas && !gas_v2 {
+    if explicit_layers
+        && !neutron
+        && !live
+        && !rocky
+        && !eyeball
+        && !pulsar
+        && !gas
+        && !gas_v2
+        && extra.is_none()
+    {
         return Err("--layers requiere un cuerpo celeste".into());
     }
     if neutron && !explicit_output {
@@ -149,13 +191,27 @@ fn run() -> Result<(), String> {
         output = PathBuf::from("renders/eyeball-v1.png");
     }
     if pulsar && !explicit_output {
-        output = PathBuf::from("renders/pulsar-v1.png");
+        output = PathBuf::from(if default_pulsar {
+            "renders/captures/pulsar-main.png"
+        } else {
+            "renders/pulsar-v1.png"
+        });
     }
     if gas && !explicit_output {
         output = PathBuf::from("renders/gas-v1.png");
     }
     if gas_v2 && !explicit_output {
         output = PathBuf::from("renders/gas-v2.png");
+    }
+    if let Some(body) = extra
+        && !explicit_output
+    {
+        output = PathBuf::from(match body {
+            lab5::extras::Body::Volcanic => "renders/extras/volcanic.png",
+            lab5::extras::Body::Desert if moon => "renders/extras/desert-moon.png",
+            lab5::extras::Body::Desert => "renders/extras/desert.png",
+            lab5::extras::Body::Temperate => "renders/extras/temperate.png",
+        });
     }
     if output.extension().and_then(|s| s.to_str()) != Some("png") {
         return Err("--output debe terminar en .png".into());
@@ -184,7 +240,9 @@ fn run() -> Result<(), String> {
             frames,
         });
     }
-    let (framebuffer, stats) = if gas_v2 {
+    let (framebuffer, stats) = if let Some(body) = extra {
+        lab5::extras::render(width, height, angle, layers, body, moon)?
+    } else if gas_v2 {
         lab5::gas_v2::render(width, height, angle, layers)?
     } else if gas {
         lab5::gas::render(width, height, angle, layers)?
@@ -207,7 +265,22 @@ fn run() -> Result<(), String> {
         return Ok(());
     }
     let mut window = Window::new(
-        if gas_v2 {
+        if let Some(body) = extra {
+            match body {
+                lab5::extras::Body::Volcanic => {
+                    "Lab 5 | volcanico (candidato) | P captura | Esc salir"
+                }
+                lab5::extras::Body::Desert if moon => {
+                    "Lab 5 | desertico y luna (candidatos) | P captura | Esc salir"
+                }
+                lab5::extras::Body::Desert => {
+                    "Lab 5 | desertico (candidato) | P captura | Esc salir"
+                }
+                lab5::extras::Body::Temperate => {
+                    "Lab 5 | templado (candidato) | P captura | Esc salir"
+                }
+            }
+        } else if gas_v2 {
             "Lab 5 | gigante azul V2 turbulento (candidata) | P captura | Esc salir"
         } else if gas {
             "Lab 5 | gigante azul HD 189733 b (candidata artistica) | P captura | Esc salir"

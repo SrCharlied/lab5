@@ -1,6 +1,6 @@
 # lab5 — Cuerpos celestes con shaders procedurales
 
-Laboratorio de gráficos por computadora: tres cuerpos celestes renderizados en **CPU**, con colores calculados por shaders sobre una esfera procedural. No se cargan texturas ni materiales de apariencia.
+Laboratorio de gráficos por computadora: tres cuerpos celestes principales y tres planetas extra renderizados en **CPU**, con colores calculados por shaders sobre una esfera procedural. No se cargan texturas ni materiales de apariencia.
 
 ## Obtener el código
 
@@ -16,7 +16,10 @@ Requiere **Rust 1.88 o superior**, Cargo y una sesión gráfica para abrir venta
 Desde la carpeta del repositorio, ejecutar uno de estos comandos:
 
 ```sh
-# Estrella de neutrones — vista estática
+# Estrella principal: púlsar (sin selector de cuerpo)
+cargo run --release --locked -- --width 640 --height 480
+
+# Estrella base — superficie estática conservada
 cargo run --release --locked -- --neutron --angle -0.65
 
 # Rocoso congelado con océano-ojo
@@ -26,9 +29,15 @@ cargo run --release --locked -- --eyeball
 cargo run --release --locked -- --gas-v2
 ```
 
-Cada comando abre un cuerpo individual. **P** guarda el framebuffer como PNG; **Esc** cierra la ventana. La selección se hace por argumentos, no mediante un selector interactivo. Sin argumentos se muestra el diagnóstico de normales, que no es uno de los tres diseños.
+Cada comando abre una vista individual. **P** guarda el framebuffer como PNG; **Esc** cierra la ventana. Sin seleccionar un modo se abre el púlsar principal; `--pulsar` lo selecciona explícitamente. La estrella base sigue disponible con `--neutron`, y su variante animada con `--neutron-live`. `--diagnostic` abre el diagnóstico de normales. La captura del modo principal sin selector se guarda por defecto en `renders/captures/pulsar-main.png`, fuera de las referencias de entrega.
 
-## 1. Estrella de neutrones
+## 1. Estrella de neutrones — púlsar principal
+
+![Púlsar: presentación principal de la estrella](renders/pulsar-main.png)
+
+Presentación principal elegida: superficie turbulenta, arcos magnéticos artísticos, haces y corona. Es una composición procedural de CPU; los efectos exteriores no se presentan como simples capas de color sobre la esfera. Para el requisito estricto de shader de superficie se conserva íntegra la estrella base:
+
+### Versión base conservada — `--neutron`
 
 ![Estrella de neutrones renderizada en CPU](renders/neutron-v1-oblique.png)
 
@@ -46,9 +55,41 @@ Costra de hielo beige, fracturas, una única región de océano azul y un remoli
 
 Masas nubosas azules, corrientes retorcidas distribuidas, filamentos pálidos y bruma. No utiliza la ilustración de referencia como textura ni pretende reproducir un mapa meteorológico observado.
 
+## Tres planetas extra y luna
+
+Ampliación aprobada visualmente. Son diseños propios inspirados en la variedad de las ilustraciones de TRAPPIST-1, no mapas observados ni una reproducción científica de sus planetas.
+
+### Volcánico
+
+![Planeta volcánico con costra oscura y lava](renders/extras/volcanic.png)
+
+Basalto oscuro y redes de lava emisiva; no es una recoloración de la estrella.
+
+### Desértico con luna
+
+![Planeta desértico y luna pequeña](renders/extras/desert-moon.png)
+
+Arena ocre, cuencas y estratos. La luna tiene su propia esfera, transformación y shader de cráteres por color; ambos cuerpos se rasterizan en el mismo framebuffer y z-buffer. No es un círculo 2D pegado ni parte del modelo del planeta.
+
+### Templado
+
+![Planeta templado con océanos y continentes](renders/extras/temperate.png)
+
+Océanos azul verdoso, continentes verdes, hielo polar y nubes fragmentadas. Su distribución global de continentes es distinta del océano-ojo.
+
+```sh
+cargo run --release --locked -- --volcanic
+cargo run --release --locked -- --desert --moon
+cargo run --release --locked -- --temperate
+```
+
+`--desert` permite ver el planeta sin su luna. Los tres extras admiten `--layers 1..4`, `--angle`, capturas sin ventana y las teclas P/Esc. Son estáticos: la luna no orbita. [Capas, ecuaciones y límites de los extras](docs/extras.md).
+
+Se presentan tres planetas nuevos y una luna como criterios adicionales de la rúbrica; no se cuentan las variantes anteriores ni el púlsar como planetas nuevos y no se garantiza una nota.
+
 ## Capas y ecuaciones
 
-Los tres shaders tienen **cuatro capas de color acumulativas**, visibles con `--layers 1`, `2`, `3` o `4`:
+La estrella base, el rocoso y el gaseoso tienen **cuatro capas de color acumulativas**, visibles con `--layers 1`, `2`, `3` o `4`:
 
 | Cuerpo | Capa 1 | Capa 2 | Capa 3 | Capa 4 |
 |---|---|---|---|---|
@@ -89,7 +130,7 @@ cargo run --release --locked -- --neutron-live
 
 El giro usa tiempo transcurrido. La pulsación artística modula los polos, no toda la superficie. `--time S` permite exportar un estado reproducible en este modo.
 
-## Extra de exhibición: púlsar
+## Detalles del púlsar principal
 
 ![Púlsar con arcos y haces procedurales](renders/pulsar-v1.png)
 
@@ -97,7 +138,7 @@ El giro usa tiempo transcurrido. La pulsación artística modula los polos, no t
 cargo run --release --locked -- --pulsar --width 640 --height 480
 ```
 
-Usa los controles de la estrella animada y añade arcos, haces y corona. **Es una ruta adicional de exhibición:** esos efectos exteriores requieren composición procedural aparte del shader de la esfera. No se presentan como parte del requisito estricto de colorear solo la superficie.
+Usa los controles de la estrella animada y añade arcos, haces y corona. **Es la presentación principal de la estrella:** los efectos exteriores requieren composición procedural aparte del shader de la esfera. No se presentan como parte del requisito estricto de colorear solo la superficie; `--neutron` conserva esa ruta de superficie.
 
 [Video generado con frames reales del renderer](renders/pulsar-v1/preview-c27b791985.mp4). El clip está codificado a 12 fps; no mide el rendimiento de la ventana. Los efectos usan CPU y se recomienda `640x480` para revisarlos; no se prometen 30 fps.
 
@@ -114,7 +155,7 @@ python scripts/verify_delivery.py
 
 El verificador requiere Python 3.9 o superior, comprueba los hashes del código y de las referencias, ejecuta las pruebas y regenera las capturas en `target/delivery-verification/`. Con dependencias ya descargadas puede usarse `--offline`; `--window` añade pruebas de presentación de tres cuadros y requiere escritorio gráfico.
 
-La suite tiene **114 pruebas**. Los hashes exactos de imágenes se verificaron en Windows x64; no se afirma identidad binaria entre todas las plataformas y bibliotecas matemáticas. [Alcance de las comprobaciones](docs/verification.md).
+La suite tiene **134 pruebas**. Los hashes exactos de imágenes se verificaron en Windows x64; no se afirma identidad binaria entre todas las plataformas y bibliotecas matemáticas. [Alcance de las comprobaciones](docs/verification.md).
 
 ## Arquitectura y límites
 
@@ -125,4 +166,4 @@ La suite tiene **114 pruebas**. Los hashes exactos de imágenes se verificaron e
 - El detalle de superficie modifica color, no vértices ni normales de la esfera.
 - Base matemática y de rasterización adaptada de UMBRAL; [procedencia](docs/source-provenance.json). No se necesita ese proyecto, sus archivos privados ni sus assets para compilar o ejecutar este repositorio.
 - Se conserva el recorte cercano heredado; no se afirma un nuevo recorte geométrico completo contra los seis planos.
-- No hay anillos, lunas ni traslación orbital. El rocoso y el gaseoso son estáticos; la estrella sí tiene una ruta animada.
+- No hay anillos ni traslación orbital. Hay una luna estática opcional en el nuevo desértico. Los planetas son estáticos; la estrella sí tiene una ruta animada.

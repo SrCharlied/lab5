@@ -8,6 +8,7 @@ fn headless_cli_exports_the_actual_framebuffer_as_rgb_png() {
     }
     let result = Command::new(env!("CARGO_BIN_EXE_lab5"))
         .args([
+            "--diagnostic",
             "--headless",
             "--width",
             "160",

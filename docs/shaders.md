@@ -74,9 +74,9 @@ Después se aplica estiramiento y dos deformaciones vectoriales de dominio. El c
 
 La iluminación de los planetas es `0.075+0.925max(n·l,0)` para el gaseoso, con `l=normalize((-0.65,0.8,1))`; el rocoso utiliza su configuración artística propia. Ninguno se presenta como una simulación atmosférica o un mapa observado del exoplaneta.
 
-## Extra de exhibición — `src/pulsar.rs`
+## Presentación principal: púlsar — `src/pulsar.rs`
 
-La esfera usa un shader de emisión turbulenta distinto del diseño principal. Los arcos externos siguen curvas ilustrativas `r=Lsin²θ`; los haces usan segmentos y perfiles gaussianos proyectados. Se omiten muestras ocultas por la esfera mediante una intersección analítica rayo-esfera y se suma emisión en un buffer lineal.
+La esfera usa un shader de emisión turbulenta distinto de la versión base conservada. Los arcos externos siguen curvas ilustrativas `r=Lsin²θ`; los haces usan segmentos y perfiles gaussianos proyectados. Se omiten muestras ocultas por la esfera mediante una intersección analítica rayo-esfera y se suma emisión en un buffer lineal.
 
 La corona exterior se calcula con un perfil radial analítico. Se aplica `1-exp(-C)` antes del encoder sRGB para conservar detalle de emisión. No es bloom por convolución ni transporte volumétrico. Las estadísticas de triángulos corresponden solo a la esfera, no al coste total de estos efectos.
 

@@ -11,7 +11,7 @@ fn invalid_preview_controls_do_not_write_a_png() {
     for args in [
         vec!["--neutron", "--layers", "0"],
         vec!["--neutron", "--layers", "5"],
-        vec!["--layers", "2"],
+        vec!["--diagnostic", "--layers", "2"],
         vec!["--neutron", "--angle", "NaN"],
     ] {
         let result = Command::new(env!("CARGO_BIN_EXE_lab5"))

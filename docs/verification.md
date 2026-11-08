@@ -16,10 +16,10 @@ El script no depende de respaldos, conversaciones, registros locales, imágenes 
 
 - Integridad de los archivos de código, pruebas, manifiestos Cargo y verificador mediante `docs/source-manifest.json`.
 - `cargo fmt --check`.
-- `cargo test --locked`: **114 pruebas** en la entrega verificada.
+- `cargo test --locked`: **134 pruebas** en la entrega verificada.
 - `cargo clippy --locked --all-targets -- -D warnings`.
 - `cargo build --release --locked`.
-- Regeneración y comparación SHA-256 de los tres cuerpos, sus cuatro capas, el diagnóstico y la imagen de exhibición del púlsar.
+- Regeneración y comparación SHA-256 de los cuerpos principales y extra, sus cuatro capas, la escena del desértico con luna, el diagnóstico y la imagen de exhibición del púlsar.
 - Integridad del video incluido; reproducir su codificación no es necesario para verificar o ejecutar el laboratorio.
 
 Los argumentos y hashes exactos de las imágenes están en `docs/render-oracles.json`. El resultado de cada ejecución queda en `target/delivery-verification/results.json` junto con los logs individuales. Un fallo detiene la verificación; no se interpreta un log parcial como aprobación.

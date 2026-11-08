@@ -94,9 +94,13 @@ def main():
         results['renders'].append({'reference': reference['file'], 'sha256': digest(output)})
     if options.window:
         for name, arguments in (
+            ('primary-pulsar', ['--width', '640', '--height', '480']),
             ('star', ['--neutron', '--angle', '-0.65']),
             ('rocky', ['--eyeball']), ('gas', ['--gas-v2']),
             ('pulsar', ['--pulsar', '--width', '640', '--height', '480']),
+            ('volcanic', ['--volcanic']),
+            ('desert-moon', ['--desert', '--moon']),
+            ('temperate', ['--temperate']),
         ):
             run('window-' + name, [executable] + arguments + ['--frames', '3'], results)
     results['render_count'] = len(results['renders'])

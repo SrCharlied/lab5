@@ -10,7 +10,7 @@ fn invalid_live_options_do_not_write_an_image() {
         vec!["--neutron-live", "--time", "NaN"],
         vec!["--neutron-live", "--time", "-1"],
         vec!["--neutron-live", "--neutron"],
-        vec!["--time", "1"],
+        vec!["--diagnostic", "--time", "1"],
         vec!["--neutron-live", "--layers", "0"],
     ] {
         let result = Command::new(env!("CARGO_BIN_EXE_lab5"))

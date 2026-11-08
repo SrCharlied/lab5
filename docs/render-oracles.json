@@ -264,6 +264,7 @@
       "name": "diagnostic",
       "file": "renders/diagnostic.png",
       "args": [
+        "--diagnostic",
         "--width",
         "960",
         "--height",
@@ -272,6 +273,199 @@
       "width": 960,
       "height": 720,
       "sha256": "a68c615b1bff17656de33e4c716dedae00942af8d422fb430b0d8bc0dd0b7d71"
+    },
+    {
+      "name": "bonus-volcanic.png",
+      "file": "renders/extras/volcanic.png",
+      "args": [
+        "--volcanic"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "6492719b47fa82ec089d84d87b2f597964cd9077b1acddbb8ea79c4e6cee2a90"
+    },
+    {
+      "name": "bonus-volcanic/layer-1.png",
+      "file": "renders/extras/volcanic/layer-1.png",
+      "args": [
+        "--volcanic",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "cf8fea58e758f3f06d92cb775dc33b67691b46c53ffd16cc7f5672d0c63f11f2"
+    },
+    {
+      "name": "bonus-volcanic/layer-2.png",
+      "file": "renders/extras/volcanic/layer-2.png",
+      "args": [
+        "--volcanic",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "2b84b3b52e97f3797546eec00fa00abe3be4e86ca2d0dd1aff9956e558955052"
+    },
+    {
+      "name": "bonus-volcanic/layer-3.png",
+      "file": "renders/extras/volcanic/layer-3.png",
+      "args": [
+        "--volcanic",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "026f20c21da2269d10ce8cb9afe883f2ef0ecc57c753deaaa62ee522538edc3e"
+    },
+    {
+      "name": "bonus-volcanic/layer-4.png",
+      "file": "renders/extras/volcanic/layer-4.png",
+      "args": [
+        "--volcanic",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "6492719b47fa82ec089d84d87b2f597964cd9077b1acddbb8ea79c4e6cee2a90"
+    },
+    {
+      "name": "bonus-desert.png",
+      "file": "renders/extras/desert.png",
+      "args": [
+        "--desert"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "26fdffdad766ab75ed37926a2d567b91fc05a02daafaa1f778b10ca4d6aae5fe"
+    },
+    {
+      "name": "bonus-desert/layer-1.png",
+      "file": "renders/extras/desert/layer-1.png",
+      "args": [
+        "--desert",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "68dd62c7799af6208e911ec9ce40601e66598d0baf064d4db0998690083295ff"
+    },
+    {
+      "name": "bonus-desert/layer-2.png",
+      "file": "renders/extras/desert/layer-2.png",
+      "args": [
+        "--desert",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "df15f122ae3ca8626cd031bf0cb7b6a2579a89c67d9db696f14975c0251047ff"
+    },
+    {
+      "name": "bonus-desert/layer-3.png",
+      "file": "renders/extras/desert/layer-3.png",
+      "args": [
+        "--desert",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "088e2f89607868006de830d504b4832fcab626c448bd5886d6f2475bbdcab803"
+    },
+    {
+      "name": "bonus-desert/layer-4.png",
+      "file": "renders/extras/desert/layer-4.png",
+      "args": [
+        "--desert",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "26fdffdad766ab75ed37926a2d567b91fc05a02daafaa1f778b10ca4d6aae5fe"
+    },
+    {
+      "name": "bonus-temperate.png",
+      "file": "renders/extras/temperate.png",
+      "args": [
+        "--temperate"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "816290af37cfad6613867c4730d646c137213fb94038c85ac9e086c1a9ca00d5"
+    },
+    {
+      "name": "bonus-temperate/layer-1.png",
+      "file": "renders/extras/temperate/layer-1.png",
+      "args": [
+        "--temperate",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "9e6f8ee598dbb30dd9e6b1c4ea65262cfc93a299e5b9cdc27e8a64fb37186437"
+    },
+    {
+      "name": "bonus-temperate/layer-2.png",
+      "file": "renders/extras/temperate/layer-2.png",
+      "args": [
+        "--temperate",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "beb96fd1e3a4ee395c14636d0711c33f989cc23e1c3b8e3de4fb099df17fee92"
+    },
+    {
+      "name": "bonus-temperate/layer-3.png",
+      "file": "renders/extras/temperate/layer-3.png",
+      "args": [
+        "--temperate",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "383d7b9dd5422f203e7df9584cd62a010c8ac51a7c3f4606f8029e77cc9e71e4"
+    },
+    {
+      "name": "bonus-temperate/layer-4.png",
+      "file": "renders/extras/temperate/layer-4.png",
+      "args": [
+        "--temperate",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "816290af37cfad6613867c4730d646c137213fb94038c85ac9e086c1a9ca00d5"
+    },
+    {
+      "name": "bonus-desert-moon.png",
+      "file": "renders/extras/desert-moon.png",
+      "args": [
+        "--desert",
+        "--moon"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "de0124db6913a4ce0a287315567790fb83ae774d5a015a67015a12a586c49aba"
+    },
+    {
+      "name": "principal-pulsar",
+      "file": "renders/pulsar-main.png",
+      "args": [],
+      "width": 960,
+      "height": 720,
+      "sha256": "7e35637f615fb6d1cdbc394e5c2a14e6420c8b2d4864dde76376901ede654472"
     }
   ],
   "media": [

@@ -466,6 +466,92 @@
       "width": 960,
       "height": 720,
       "sha256": "7e35637f615fb6d1cdbc394e5c2a14e6420c8b2d4864dde76376901ede654472"
+    },
+    {
+      "name": "slideshow-1",
+      "file": "renders/slideshow/slide-01.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "7e35637f615fb6d1cdbc394e5c2a14e6420c8b2d4864dde76376901ede654472"
+    },
+    {
+      "name": "slideshow-2",
+      "file": "renders/slideshow/slide-02.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "79473f56ce7d27d3cefa19582d499a0f0e163672b88fb5f08064bdfae31984fb"
+    },
+    {
+      "name": "slideshow-3",
+      "file": "renders/slideshow/slide-03.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "4766b9a1dc8562e3bef00a7cb431ac60bbf41438f4b1c77f74cceed4d0daa3b9"
+    },
+    {
+      "name": "slideshow-4",
+      "file": "renders/slideshow/slide-04.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "6492719b47fa82ec089d84d87b2f597964cd9077b1acddbb8ea79c4e6cee2a90"
+    },
+    {
+      "name": "slideshow-5",
+      "file": "renders/slideshow/slide-05.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "5"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "de0124db6913a4ce0a287315567790fb83ae774d5a015a67015a12a586c49aba"
+    },
+    {
+      "name": "slideshow-6",
+      "file": "renders/slideshow/slide-06.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "6"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "816290af37cfad6613867c4730d646c137213fb94038c85ac9e086c1a9ca00d5"
+    },
+    {
+      "name": "slideshow-7",
+      "file": "renders/slideshow/slide-07.png",
+      "args": [
+        "--slideshow",
+        "--slide",
+        "7",
+        "--angle",
+        "-0.65"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "41ad95dd21d28fae63e32dc5aba22a857162ac42294d2631dfa704147a6de5de"
     }
   ],
   "media": [

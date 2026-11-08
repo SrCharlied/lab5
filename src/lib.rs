@@ -8,6 +8,7 @@ pub mod neutron_viewer;
 pub mod procedural;
 pub mod pulsar;
 pub mod rocky;
+pub mod slideshow;
 pub use neutron::render as render_neutron;
 pub mod assets;
 pub mod math;

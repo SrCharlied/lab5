@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "expected_tests": 134,
+  "expected_tests": 143,
   "files": {
     "Cargo.lock": "6bc23c67e4608dd291db7af2a6d34d5b883f4b706255cdee2ff55c50a3c57ebb",
     "Cargo.toml": "422c8fe45d689dce9379e3e8cad0de819a8cbdb8223570a4ecef1e97fd5aefdd",
-    "scripts/verify_delivery.py": "42bb9a7976499d05827cc31ebf44bdffbb02f50858a30ef400936232224a87f8",
+    "scripts/verify_delivery.py": "2e440384940114ac60de7d37ddec125d637db592a16242cae409c4f110c6ac89",
     "src/assets/mod.rs": "362087ab57d26de8407264b1fd1f8e8c01d68453423c5a8aa6aad2384e451bbd",
     "src/assets/obj.rs": "537db6324ab553c9e7379962e3fb922ad28bde2113344f735822fa1fecef4a22",
     "src/assets/primitives.rs": "35f9436ed4339d42ea1913ae6cde0d7429281d81ef3ff35a66afcfb23d55a236",
@@ -12,9 +12,9 @@
     "src/eyeball.rs": "3b4489c67997daaf93256b56106f9b9ea06cc5df352aa21cbc6a252e68446b2d",
     "src/gas.rs": "4fd4eb226ea916e29309ed4f8a3711eb6c24619873a7071fbd23ef8d7a39eda3",
     "src/gas_v2.rs": "dd9a4d5396510ce87233e00ba900fc5b2f92681b19018d01d1a0f212e3ef666a",
-    "src/lib.rs": "5286d04588ab2efc763d0a664cfa9c5e5614eb5204a6873af4145ca53fb69892",
+    "src/lib.rs": "9dc02c9f3630f7df6ccd28d86654118365d6317e8a1bee3f1fb786b62bf56d60",
     "src/live_app.rs": "8f2f3375bd6f938911ba38bf6c5be59cebf9d40a8ea63327c11f65de15549524",
-    "src/main.rs": "3d7a0e76f0f084c7a587cc659760a65a04f497582fb1b5737a8619729504bec1",
+    "src/main.rs": "ef6bc3bb1606b7621eec736bef09f0753ba54842562dc3870f79a3a2a410ce86",
     "src/math/matrix.rs": "a1940a72e900ff718f1a9b844d2e6005b453ae6503fc61830c8033fa66ac6f8c",
     "src/math/mod.rs": "39f86bb628b8c308545bcd4dfc9cc10eace7819f146a0852c1d3743360bca62e",
     "src/math/vector.rs": "04710e868a3c412d1d9098c46df8b422c0561c98916bcd287a972f07ab89a2c1",
@@ -36,6 +36,8 @@
     "src/rocky.rs": "836cabc4f99afc437e3e8b407cf189da095746e6accb9dc11c50225c3d5b9b5d",
     "src/scene/camera.rs": "a738f341eb7374acad92a8caa2e266c3cd76d1083222c980faf2905fb248acea",
     "src/scene/mod.rs": "c0f51fb5fc27173b59a37052d47c7b63a202a241cc027d5b85381592bf22d486",
+    "src/slideshow.rs": "9f6cdd120a7d946226ebdc727b87d87124f142fe559dc9f68ceaa9faba99eeb5",
+    "src/slideshow_app.rs": "1d601c2f3045cc424872ef826a7f73e7dfc925a7a9f9595a606049b02d2b495e",
     "tests/cli.rs": "96b793d780a78862fc744512c58eeebb00aa50b7e976f389669e2d0d65aa8bc2",
     "tests/diagnostic.rs": "2dde7b9face28e88240e583a95bf7bf8c290bc41c63c19bf0b083791c59e5a4c",
     "tests/extras.rs": "53698cf3fb02682a1908245f1f27297dd4d6b25a9b9070a3e4fac0bc8d492299",
@@ -67,6 +69,8 @@
     "tests/rasterizer.rs": "29b9921ad78beca28c548822e753bf47278d527fb399a8043cd98baec94ad087",
     "tests/rocky.rs": "13c410d772ad419d71e010eca0e33b191008a74a234371455dff4d174b8901b9",
     "tests/rocky_cli.rs": "4a4d433aca8984f07498b862acb4ef3636994af1ca4e46315ea0ed1fe9520181",
-    "tests/rocky_guards.rs": "2c3af63dbe36484f5598a2a7da7e8835d69fe4fc247dff19e9d664c7d7ba2dd4"
+    "tests/rocky_guards.rs": "2c3af63dbe36484f5598a2a7da7e8835d69fe4fc247dff19e9d664c7d7ba2dd4",
+    "tests/slideshow.rs": "7a4ae079b7feff44d121cb56392bd7e037da0aa3a17d48930640c47ee6e76cda",
+    "tests/slideshow_cli.rs": "b0bf16e702c128145bc8ab5c400120e630eb67fda9e15a85517417f95354cf44"
   }
 }

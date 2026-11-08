@@ -9,15 +9,35 @@ git clone https://github.com/SrCharlied/lab5.git
 cd lab5
 ```
 
-## Ejecutar
+## Abrir toda la presentación con un solo comando
+
+```sh
+cargo run --release --locked
+```
+
+Abre un slideshow en una sola ventana, empezando por el púlsar. Recorre automáticamente siete vistas cada ocho segundos: púlsar, océano-ojo, gigante gaseoso, volcánico, desértico con luna, templado y estrella base. No hace falta cerrar la aplicación ni ejecutar otro comando para cambiar de cuerpo.
+
+| Control del slideshow | Acción |
+|---|---|
+| Flecha izquierda / derecha | Vista anterior / siguiente; reinicia su espera de ocho segundos |
+| Espacio | Pausar/reanudar avance automático y animación del púlsar |
+| R | Volver al púlsar inicial y reanudar |
+| P | Guardar exactamente el cuadro presentado |
+| Esc | Salir |
+
+Se puede cambiar de vista manualmente mientras está pausado. El título indica nombre, posición y estado. Los planetas y la luna siguen estáticos; el púlsar conserva su giro y pulso. Para una ventana más ligera puede añadirse `-- --width 640 --height 480` al comando.
+
+[Detalles y verificación del slideshow](docs/slideshow.md).
+
+## Modos individuales opcionales
 
 Requiere **Rust 1.88 o superior**, Cargo y una sesión gráfica para abrir ventanas. La primera compilación descarga las dependencias fijadas en `Cargo.lock`.
 
 Desde la carpeta del repositorio, ejecutar uno de estos comandos:
 
 ```sh
-# Estrella principal: púlsar (sin selector de cuerpo)
-cargo run --release --locked -- --width 640 --height 480
+# Estrella principal: púlsar individual
+cargo run --release --locked -- --pulsar --width 640 --height 480
 
 # Estrella base — superficie estática conservada
 cargo run --release --locked -- --neutron --angle -0.65
@@ -29,7 +49,7 @@ cargo run --release --locked -- --eyeball
 cargo run --release --locked -- --gas-v2
 ```
 
-Cada comando abre una vista individual. **P** guarda el framebuffer como PNG; **Esc** cierra la ventana. Sin seleccionar un modo se abre el púlsar principal; `--pulsar` lo selecciona explícitamente. La estrella base sigue disponible con `--neutron`, y su variante animada con `--neutron-live`. `--diagnostic` abre el diagnóstico de normales. La captura del modo principal sin selector se guarda por defecto en `renders/captures/pulsar-main.png`, fuera de las referencias de entrega.
+Los selectores explícitos abren vistas individuales con sus controles anteriores. Sin seleccionar un modo se abre el slideshow; `--slideshow` también lo selecciona. La estrella base sigue disponible con `--neutron`, y su variante animada con `--neutron-live`. `--diagnostic` abre el diagnóstico de normales. Las capturas del slideshow van a `renders/captures/`: `pulsar-main.png` para la primera vista y `slide-02.png` a `slide-07.png` para las demás, fuera de las referencias de entrega. `--output` permite elegir una ruta PNG explícita.
 
 ## 1. Estrella de neutrones — púlsar principal
 
@@ -155,7 +175,7 @@ python scripts/verify_delivery.py
 
 El verificador requiere Python 3.9 o superior, comprueba los hashes del código y de las referencias, ejecuta las pruebas y regenera las capturas en `target/delivery-verification/`. Con dependencias ya descargadas puede usarse `--offline`; `--window` añade pruebas de presentación de tres cuadros y requiere escritorio gráfico.
 
-La suite tiene **134 pruebas**. Los hashes exactos de imágenes se verificaron en Windows x64; no se afirma identidad binaria entre todas las plataformas y bibliotecas matemáticas. [Alcance de las comprobaciones](docs/verification.md).
+La suite tiene **143 pruebas**. Los hashes exactos de imágenes se verificaron en Windows x64; no se afirma identidad binaria entre todas las plataformas y bibliotecas matemáticas. [Alcance de las comprobaciones](docs/verification.md).
 
 ## Arquitectura y límites
 

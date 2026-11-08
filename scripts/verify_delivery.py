@@ -103,6 +103,9 @@ def main():
             ('temperate', ['--temperate']),
         ):
             run('window-' + name, [executable] + arguments + ['--frames', '3'], results)
+        for number in range(1, 8):
+            run(f'window-slide-{number}', [executable, '--slideshow', '--slide', str(number),
+                                           '--width', '640', '--height', '480', '--frames', '2'], results)
     results['render_count'] = len(results['renders'])
     results['preserved_media_count'] = len(oracles['media'])
     (OUT / 'results.json').write_text(json.dumps(results, indent=2) + '\n', encoding='utf-8')

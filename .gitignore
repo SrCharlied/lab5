@@ -47,6 +47,16 @@
 /renders/pulsar-v1/*
 !/renders/pulsar-v1/preview-c27b791985.mp4
 !/docs/extras.md
+!/docs/slideshow.md
+!/renders/slideshow/
+/renders/slideshow/*
+!/renders/slideshow/slide-01.png
+!/renders/slideshow/slide-02.png
+!/renders/slideshow/slide-03.png
+!/renders/slideshow/slide-04.png
+!/renders/slideshow/slide-05.png
+!/renders/slideshow/slide-06.png
+!/renders/slideshow/slide-07.png
 !/renders/extras/
 /renders/extras/*
 !/renders/extras/volcanic.png

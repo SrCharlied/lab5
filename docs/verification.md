@@ -16,7 +16,7 @@ El script no depende de respaldos, conversaciones, registros locales, imágenes 
 
 - Integridad de los archivos de código, pruebas, manifiestos Cargo y verificador mediante `docs/source-manifest.json`.
 - `cargo fmt --check`.
-- `cargo test --locked`: **134 pruebas** en la entrega verificada.
+- `cargo test --locked`: **143 pruebas** en la entrega verificada.
 - `cargo clippy --locked --all-targets -- -D warnings`.
 - `cargo build --release --locked`.
 - Regeneración y comparación SHA-256 de los cuerpos principales y extra, sus cuatro capas, la escena del desértico con luna, el diagnóstico y la imagen de exhibición del púlsar.

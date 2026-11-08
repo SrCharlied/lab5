@@ -1,12 +1,14 @@
 mod live_app;
 mod pulsar_app;
+mod slideshow_app;
 use lab5::{render_diagnostic, render_neutron, renderer::image::save_png};
 use minifb::{Key, KeyRepeat, Window, WindowOptions};
 use std::path::PathBuf;
 
 const HELP: &str = "Lab 5 — cuerpos celestes por software\n\
-Uso: cargo run --release -- [--pulsar | --neutron | --neutron-live | --diagnostic | --rocky | --eyeball | --gas | --gas-v2 | --volcanic | --desert | --temperate] [--moon] [--time S] [--layers 1..4] [--headless] [--output ruta.png] [--width N] [--height N] [--angle RAD] [--frames N]\n\
-Sin modo explicito: pulsar principal. --neutron conserva la estrella base; --diagnostic muestra normales.\n\
+Uso: cargo run --release -- [--slideshow | --pulsar | --neutron | --neutron-live | --diagnostic | --rocky | --eyeball | --gas | --gas-v2 | --volcanic | --desert | --temperate] [--slide 1..7] [--moon] [--time S] [--layers 1..4] [--headless] [--output ruta.png] [--width N] [--height N] [--angle RAD] [--frames N]\n\
+Sin modo explicito: slideshow de siete vistas, comenzando por el pulsar. --pulsar abre la estrella sola.\n\
+SLIDESHOW: Izq/Der cambia vista; Espacio pausa avance y animacion; R vuelve al inicio; P captura; Esc sale. Avance automatico cada 8s.\n\
 Ventana: Esc salir; P guardar PNG.\n\
 --frames N cierra la ventana despues de N cuadros (N > 0).\n\
 --angle fija la rotacion Y inicial en radianes; --neutron es estatico, --neutron-live gira.\n\
@@ -17,7 +19,7 @@ Ventana: Esc salir; P guardar PNG.\n\
 --volcanic, --desert y --temperate son planetas extra artisticos, estaticos y procedurales.\n\
 --desert --moon agrega una luna pequena como modelo separado; no hay orbita animada.\n\
 --neutron-live activa giro, pulsacion y camara; --time S fija su tiempo inicial.\n\
---pulsar es una exhibicion separada: superficie, arcos, haces y corona; --time fija su tiempo y --layers sus etapas acumulativas.\n\
+--pulsar abre individualmente superficie, arcos, haces y corona; --time fija su tiempo y --layers sus etapas acumulativas.\n\
 LIVE: Flechas orbitar; W/S acercar/alejar; Espacio pausa; R reinicia; P PNG; Esc salir.\n";
 
 fn run() -> Result<(), String> {
@@ -34,6 +36,8 @@ fn run() -> Result<(), String> {
     let mut eyeball = false;
     let mut pulsar = false;
     let mut diagnostic = false;
+    let mut slideshow = false;
+    let mut slide = None;
     let mut gas = false;
     let mut gas_v2 = false;
     let mut extra = None;
@@ -69,6 +73,10 @@ fn run() -> Result<(), String> {
             eyeball = true;
             continue;
         }
+        if arg == "--slideshow" {
+            slideshow = true;
+            continue;
+        }
         if arg == "--diagnostic" {
             diagnostic = true;
             continue;
@@ -102,6 +110,7 @@ fn run() -> Result<(), String> {
         }
         if ![
             "--width", "--height", "--angle", "--frames", "--output", "--layers", "--time",
+            "--slide",
         ]
         .contains(&arg.as_str())
         {
@@ -116,6 +125,13 @@ fn run() -> Result<(), String> {
             "--angle" => {
                 angle = value.parse().map_err(|_| "Angulo invalido")?;
                 explicit_angle = true;
+            }
+            "--slide" => {
+                let n = value.parse::<usize>().map_err(|_| "Diapositiva invalida")?;
+                if !(1..=lab5::slideshow::LABELS.len()).contains(&n) {
+                    return Err("--slide debe estar entre 1 y 7".into());
+                }
+                slide = Some(n - 1);
             }
             "--time" => {
                 time = value.parse().map_err(|_| "Tiempo invalido")?;
@@ -149,22 +165,26 @@ fn run() -> Result<(), String> {
         + u8::from(gas)
         + u8::from(gas_v2)
         + u8::from(extra.is_some())
-        + u8::from(diagnostic);
+        + u8::from(diagnostic)
+        + u8::from(slideshow);
     if selected_modes > 1 {
         return Err(
-            "Escoge un solo modo: --pulsar, --neutron, --neutron-live, --diagnostic, --rocky, --eyeball, --gas, --gas-v2, --volcanic, --desert o --temperate"
+            "Escoge un solo modo: --slideshow, --pulsar, --neutron, --neutron-live, --diagnostic, --rocky, --eyeball, --gas, --gas-v2, --volcanic, --desert o --temperate"
                 .into(),
         );
     }
-    let default_pulsar = selected_modes == 0;
-    if default_pulsar {
+    let presentation = selected_modes == 0 || slideshow;
+    if slide.is_some() && !presentation {
+        return Err("--slide requiere la presentacion --slideshow".into());
+    }
+    if presentation {
         pulsar = true;
     }
     if moon && extra != Some(lab5::extras::Body::Desert) {
         return Err("--moon requiere --desert".into());
     }
     if explicit_time && !live && !pulsar {
-        return Err("--time requiere --neutron-live".into());
+        return Err("--time requiere --neutron-live, --pulsar o --slideshow".into());
     }
     if explicit_layers
         && !neutron
@@ -191,7 +211,7 @@ fn run() -> Result<(), String> {
         output = PathBuf::from("renders/eyeball-v1.png");
     }
     if pulsar && !explicit_output {
-        output = PathBuf::from(if default_pulsar {
+        output = PathBuf::from(if presentation {
             "renders/captures/pulsar-main.png"
         } else {
             "renders/pulsar-v1.png"
@@ -215,6 +235,22 @@ fn run() -> Result<(), String> {
     }
     if output.extension().and_then(|s| s.to_str()) != Some("png") {
         return Err("--output debe terminar en .png".into());
+    }
+    if presentation {
+        return slideshow_app::run(
+            live_app::Options {
+                width,
+                height,
+                angle,
+                time,
+                layers,
+                headless,
+                output,
+                frames,
+            },
+            slide.unwrap_or(0),
+            explicit_output,
+        );
     }
     if pulsar {
         return pulsar_app::run(live_app::Options {

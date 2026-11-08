@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "reference_platform": "Windows x64",
+  "png": [
+    {
+      "name": "star-neutron-v1-oblique",
+      "file": "renders/neutron-v1-oblique.png",
+      "args": [
+        "--neutron",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--angle",
+        "-0.65"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "41ad95dd21d28fae63e32dc5aba22a857162ac42294d2631dfa704147a6de5de"
+    },
+    {
+      "name": "star-layer-1",
+      "file": "renders/neutron-v1/layer-1.png",
+      "args": [
+        "--neutron",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--angle",
+        "-0.65",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "ded49dd6712ef05af46db803c5b116784641fae21543455ce650a42488d8700f"
+    },
+    {
+      "name": "star-layer-2",
+      "file": "renders/neutron-v1/layer-2.png",
+      "args": [
+        "--neutron",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--angle",
+        "-0.65",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "cdf83dc2acbe8ff4e194112d39756f44ed24b028bffcb20cee591fc49eb9da29"
+    },
+    {
+      "name": "star-layer-3",
+      "file": "renders/neutron-v1/layer-3.png",
+      "args": [
+        "--neutron",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--angle",
+        "-0.65",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "48c758c10d380b5a342ee9f13175b2d9367b18c31ac66c893190aa3a2640e490"
+    },
+    {
+      "name": "star-layer-4",
+      "file": "renders/neutron-v1/layer-4.png",
+      "args": [
+        "--neutron",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--angle",
+        "-0.65",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "41ad95dd21d28fae63e32dc5aba22a857162ac42294d2631dfa704147a6de5de"
+    },
+    {
+      "name": "rocky-eyeball-v1",
+      "file": "renders/eyeball-v1.png",
+      "args": [
+        "--eyeball",
+        "--width",
+        "960",
+        "--height",
+        "720"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "79473f56ce7d27d3cefa19582d499a0f0e163672b88fb5f08064bdfae31984fb"
+    },
+    {
+      "name": "rocky-layer-1",
+      "file": "renders/eyeball-v1/layer-1.png",
+      "args": [
+        "--eyeball",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "96ef69a923911c66e17722aded362aa3cd728ddd39bbdd501f4f1a4d2a2a9db8"
+    },
+    {
+      "name": "rocky-layer-2",
+      "file": "renders/eyeball-v1/layer-2.png",
+      "args": [
+        "--eyeball",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "685ea1b5a8eca9b19eaf40b19a18ec4010891036ff72888d774542ac4b4a90a5"
+    },
+    {
+      "name": "rocky-layer-3",
+      "file": "renders/eyeball-v1/layer-3.png",
+      "args": [
+        "--eyeball",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "41833d2177a1bdc132640877e57ecd23989321f8aa11053ec5f043d4b7efa477"
+    },
+    {
+      "name": "rocky-layer-4",
+      "file": "renders/eyeball-v1/layer-4.png",
+      "args": [
+        "--eyeball",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "79473f56ce7d27d3cefa19582d499a0f0e163672b88fb5f08064bdfae31984fb"
+    },
+    {
+      "name": "gas-gas-v2",
+      "file": "renders/gas-v2.png",
+      "args": [
+        "--gas-v2",
+        "--width",
+        "960",
+        "--height",
+        "720"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "4766b9a1dc8562e3bef00a7cb431ac60bbf41438f4b1c77f74cceed4d0daa3b9"
+    },
+    {
+      "name": "gas-layer-1",
+      "file": "renders/gas-v2/layer-1.png",
+      "args": [
+        "--gas-v2",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "1"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "d96b3c48cc3de0f393d7c284c852851f27bbff108ba3456e0ebefdf68c94fbe4"
+    },
+    {
+      "name": "gas-layer-2",
+      "file": "renders/gas-v2/layer-2.png",
+      "args": [
+        "--gas-v2",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "2"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "e5a659a3c4d48544b69820d2cf2507f236bab1249bb9022f0fc4b579e38a4ad8"
+    },
+    {
+      "name": "gas-layer-3",
+      "file": "renders/gas-v2/layer-3.png",
+      "args": [
+        "--gas-v2",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "3"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "3e824fbf5d69248577eabce17e7394d7434a23b1e36257bc63640a06b1dd16f1"
+    },
+    {
+      "name": "gas-layer-4",
+      "file": "renders/gas-v2/layer-4.png",
+      "args": [
+        "--gas-v2",
+        "--width",
+        "960",
+        "--height",
+        "720",
+        "--layers",
+        "4"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "4766b9a1dc8562e3bef00a7cb431ac60bbf41438f4b1c77f74cceed4d0daa3b9"
+    },
+    {
+      "name": "pulsar",
+      "file": "renders/pulsar-v1.png",
+      "args": [
+        "--pulsar",
+        "--width",
+        "960",
+        "--height",
+        "720"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "7e35637f615fb6d1cdbc394e5c2a14e6420c8b2d4864dde76376901ede654472"
+    },
+    {
+      "name": "diagnostic",
+      "file": "renders/diagnostic.png",
+      "args": [
+        "--width",
+        "960",
+        "--height",
+        "720"
+      ],
+      "width": 960,
+      "height": 720,
+      "sha256": "a68c615b1bff17656de33e4c716dedae00942af8d422fb430b0d8bc0dd0b7d71"
+    }
+  ],
+  "media": [
+    {
+      "file": "renders/pulsar-v1/preview-c27b791985.mp4",
+      "sha256": "f37d49a58cf23db774564b06d38b7d69bc1e4bbf93d6bef04689fdab07d59acc"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# Preserve the reviewed Rust source bytes, including inherited CRLF files.
+src/** -text
+tests/** -text
+*.png binary
+*.mp4 binary
+

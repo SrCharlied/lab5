@@ -1,0 +1,21 @@
+{
+  "source": "../UMBRAL (origin of copied code only; not a runtime dependency)",
+  "source_commit": "6c009bcebcaa7971466d9443664e99b4ec3001df",
+  "unchanged_source_sha256": {
+    "src/math/mod.rs": "39f86bb628b8c308545bcd4dfc9cc10eace7819f146a0852c1d3743360bca62e",
+    "src/math/vector.rs": "04710e868a3c412d1d9098c46df8b422c0561c98916bcd287a972f07ab89a2c1",
+    "src/math/matrix.rs": "a1940a72e900ff718f1a9b844d2e6005b453ae6503fc61830c8033fa66ac6f8c",
+    "src/renderer/framebuffer.rs": "93294792c946f0dae7686aa82819a2a6b3a2f36cc0c7e2f736bf716d3d06d14e",
+    "src/renderer/rasterizer.rs": "f93e11bccc808b1fe7cd3cd666f19365d5a30341a3f8ac059d7a89982f986b1a",
+    "src/renderer/clipping.rs": "c7fa2a6e2a85b4f0db2e77679862983ae4ba6b4933a07c1c69ff958ebd97073c",
+    "src/renderer/image.rs": "11f3f9f2b88aad33e3539e3fddc976c22804b3a4de604338aef996f5aa5f4552",
+    "src/renderer/stats.rs": "5d45ed6b859075ca84bb24a710106cc7ff3bafcb042e2d2ffc54d4b2e213f128",
+    "src/scene/camera.rs": "a738f341eb7374acad92a8caa2e266c3cd76d1083222c980faf2905fb248acea"
+  },
+  "adapted": [
+    "src/assets/primitives.rs: sphere generation; material bookkeeping removed",
+    "src/assets/obj.rs: geometry structs only; importer and all material fields removed",
+    "src/renderer/shader.rs: fragment attributes and sRGB conversion only",
+    "src/renderer/pipeline.rs: geometry pipeline adapted to a fragment closure without materials"
+  ]
+}
